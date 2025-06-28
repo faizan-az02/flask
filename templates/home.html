@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Register</title>
+    <title>Customer Registration</title>
 </head>
 <body>
-    <h1>User Registration</h1>
+    <h1>Customer Registration</h1>
     <form method="POST">
         <label>Name:</label><br>
         <input type="text" name="name" required><br><br>
@@ -12,11 +12,20 @@
         <label>Email:</label><br>
         <input type="email" name="email" required><br><br>
 
-        <label>Username:</label><br>
-        <input type="text" name="username" required><br><br>
+        <label>Item Name:</label><br>
+        <input type="text" name="item_name" required><br><br>
 
-        <label>Password:</label><br>
-        <input type="password" name="password" required><br><br>
+        <label>Total Price:</label><br>
+        <input type="number" step="0.01" name="total_price" required><br><br>
+
+        <label>Address Line:</label><br>
+        <input type="text" name="address_line" required><br><br>
+
+        <label>City:</label><br>
+        <input type="text" name="city" required><br><br>
+
+        <label>Country:</label><br>
+        <input type="text" name="country" required><br><br>
 
         <input type="submit" value="Register">
     </form>
