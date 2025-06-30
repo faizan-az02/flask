@@ -45,14 +45,14 @@
                 <td>
                     <ul>
                     {% for order in user.orders %}
-                        <li>{{ order.item_name }} ({{ order.total_price }})</li>
+                        <p>{{ order.item_name }} ({{ order.total_price }})</p>
                     {% endfor %}
                     </ul>
                 </td>
                 <td>
                     <ul>
                     {% for address in user.addresses %}
-                        <li>{{ address.address_line }}, {{ address.city }}, {{ address.country }}</li>
+                        <p>{{ address.address_line }}, {{ address.city }}, {{ address.country }}</p>
                     {% endfor %}
                     </ul>
                 </td>
