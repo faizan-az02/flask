@@ -3,12 +3,28 @@
         <th>ID</th>
         <th>Name</th>
         <th>Email</th>
+        <th>Orders</th>
+        <th>Addresses</th>
     </tr>
     {% for user in users %}
     <tr>
-        <td>{{ user[0] }}</td>
-        <td>{{ user[1] }}</td>
-        <td>{{ user[2] }}</td>
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+            <ul>
+            {% for order in user.orders %}
+                <li>{{ order.item_name }} ({{ order.total_price }})</li>
+            {% endfor %}
+            </ul>
+        </td>
+        <td>
+            <ul>
+            {% for address in user.addresses %}
+                <li>{{ address.address_line }}, {{ address.city }}, {{ address.country }}</li>
+            {% endfor %}
+            </ul>
+        </td>
     </tr>
     {% endfor %}
 </table>
