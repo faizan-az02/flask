@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect, session
 from extensions import db
 from display_customers import bp
 from models import Customer, Order, Address
+from werkzeug.security import generate_password_hash
+from werkzeug.security import check_password_hash
 
 def get_pass(filepath = "C:/Faizan/Misc/Github/password.txt"):
 
@@ -33,8 +35,11 @@ app.register_blueprint(bp)
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
+    error = None
     if request.method == 'POST':
         name = request.form['name']
+        password = request.form['password']
+        confirm_password = request.form['confirm_password']
         email = request.form['email']
         item_name = request.form['item_name']
         total_price = request.form['total_price']
@@ -42,7 +47,12 @@ def home():
         city = request.form['city']
         country = request.form['country']
 
-        customer = Customer(name=name, email=email)
+        if password != confirm_password:
+            error = 'Passwords do not match.'
+            return render_template('register.html', error=error)
+
+        password_hash = generate_password_hash(password)
+        customer = Customer(name=name, password_hash=password_hash, email=email)
         db.session.add(customer)
         db.session.commit()
 
@@ -56,19 +66,23 @@ def home():
     return render_template('register.html')
 
 @app.route('/login', methods=['GET', 'POST'])
+
 def login():
     error = None
     if request.method == 'POST':
         email = request.form['email']
-        name = request.form['name']
-        user = Customer.query.filter_by(email=email, name=name).first()
-        if user:
+        password = request.form['password']
+
+        user = Customer.query.filter_by(email=email).first()
+
+        if user and check_password_hash(user.password_hash, password):
             session['user_id'] = user.id
             session['user_name'] = user.name
             return redirect('/welcome')
         else:
-            error = 'Invalid email or name.'
+            error = 'Invalid email or password.'
     return render_template('login.html', error=error)
+
 
 @app.route('/welcome')
 def welcome():
