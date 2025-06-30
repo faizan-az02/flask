@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session
 from extensions import db
 from display_customers import bp
 from models import Customer, Order, Address
@@ -22,6 +22,7 @@ def get_pass(filepath = "C:/Faizan/Misc/Github/password.txt"):
 password = get_pass()
 
 app = Flask(__name__)
+app.secret_key = 'c7e2b1f4a8d9e3c5f6b7a2d4e9c1f3b8a5d6c2e7b4f1a9c3e8d2b5a7f6c4e1b9'
 app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql://root:{password}@localhost/test'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -51,8 +52,30 @@ def home():
         db.session.add(address)
         db.session.commit()
 
-        return redirect('/users')
+        return redirect('/login')
     return render_template('register.html')
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    error = None
+    if request.method == 'POST':
+        email = request.form['email']
+        name = request.form['name']
+        user = Customer.query.filter_by(email=email, name=name).first()
+        if user:
+            session['user_id'] = user.id
+            session['user_name'] = user.name
+            return redirect('/welcome')
+        else:
+            error = 'Invalid email or name.'
+    return render_template('login.html', error=error)
+
+@app.route('/welcome')
+def welcome():
+    user_name = session.get('user_name')
+    if not user_name:
+        return redirect('/login')
+    return render_template('welcome.html', user_name=user_name)
 
 if __name__ == '__main__':
     app.run(debug=True)
