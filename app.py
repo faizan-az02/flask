@@ -33,8 +33,12 @@ db.init_app(app)
 # Register Blueprint from display_customers.py
 app.register_blueprint(bp)
 
-@app.route('/', methods=['GET', 'POST'])
-def home():
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
     error = None
     if request.method == 'POST':
         name = request.form['name']
@@ -63,7 +67,7 @@ def home():
         db.session.commit()
 
         return redirect('/login')
-    return render_template('register.html')
+    return render_template('register.html', error=error)
 
 @app.route('/login', methods=['GET', 'POST'])
 
