@@ -1,30 +1,64 @@
-<table border="1">
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Orders</th>
-        <th>Addresses</th>
-    </tr>
-    {% for user in users %}
-    <tr>
-        <td>{{ user.id }}</td>
-        <td>{{ user.name }}</td>
-        <td>{{ user.email }}</td>
-        <td>
-            <ul>
-            {% for order in user.orders %}
-                <li>{{ order.item_name }} ({{ order.total_price }})</li>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Users</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e0e0e0;
+            text-align: left;
+        }
+        th {
+            background: #667eea;
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background: #f6f6ff;
+        }
+        tr:hover {
+            background: #e9e9f7;
+        }
+    </style>
+</head>
+<body>
+    <div class="center-card">
+        <h2>All Users</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Orders</th>
+                <th>Addresses</th>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                    <ul>
+                    {% for order in user.orders %}
+                        <li>{{ order.item_name }} ({{ order.total_price }})</li>
+                    {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                    {% for address in user.addresses %}
+                        <li>{{ address.address_line }}, {{ address.city }}, {{ address.country }}</li>
+                    {% endfor %}
+                    </ul>
+                </td>
+            </tr>
             {% endfor %}
-            </ul>
-        </td>
-        <td>
-            <ul>
-            {% for address in user.addresses %}
-                <li>{{ address.address_line }}, {{ address.city }}, {{ address.country }}</li>
-            {% endfor %}
-            </ul>
-        </td>
-    </tr>
-    {% endfor %}
-</table>
+        </table>
+    </div>
+</body>
+</html>

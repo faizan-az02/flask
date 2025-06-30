@@ -1,0 +1,44 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.center-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+    padding: 40px 32px;
+    text-align: center;
+    min-width: 320px;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 32px;
+    font-weight: 600;
+}
+
+.main-btn {
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 32px;
+    margin: 0 10px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.15);
+}
+
+.main-btn:hover {
+    background: linear-gradient(90deg, #764ba2 0%, #667eea 100%);
+    transform: translateY(-2px) scale(1.04);
+} 
