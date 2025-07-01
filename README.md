@@ -1,3 +1,5 @@
+Learning Flask and Posting whatever I do, here.
+
 # Flask Customer Management App
 
 A Flask web application for managing customers, their orders, and addresses. This project demonstrates user registration, login, and viewing all users with their associated orders and addresses. Data is stored in a MySQL database using SQLAlchemy ORM.
@@ -16,17 +18,8 @@ A Flask web application for managing customers, their orders, and addresses. Thi
    git clone https://github.com/yourusername/your-repo.git
    cd your-repo
    ```
-
-2. **Create a virtual environment and activate it:**
-   ```bash
-   python -m venv venv
-   # On Windows:
-   venv\Scripts\activate
-   # On macOS/Linux:
-   source venv/bin/activate
-   ```
-
-3. **Install dependencies:**
+   
+2. **Install dependencies:**
    Create a `requirements.txt` file with the following content:
    ```
    Flask
@@ -39,12 +32,12 @@ A Flask web application for managing customers, their orders, and addresses. Thi
    pip install -r requirements.txt
    ```
 
-4. **Configure the database:**
+3. **Configure the database:**
    - Make sure you have MySQL installed and running.
    - Create a database named `test` (or change the name in `app.py`).
    - Place your MySQL root password in a file and update the path in `app.py`.
 
-5. **Initialize the database:**
+4. **Initialize the database:**
    Open a Python shell and run:
    ```python
    from app import db
