@@ -16,7 +16,7 @@ A Flask web application for managing customers, their orders, and addresses. Thi
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/faizan-az02/flask.git
-   cd your-repo
+   cd flask
    ```
    
 2. **Install dependencies:**
