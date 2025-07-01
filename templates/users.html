@@ -28,31 +28,35 @@
 </head>
 <body>
     <div class="center-card">
-        <h2>All Users</h2>
+        <h2>ALL USERS</h2>
         <table>
             <tr>
                 <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Orders</th>
+                <th>Price</th>
                 <th>Addresses</th>
             </tr>
             {% for user in users %}
             <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.name }}</td>
-                <td>{{ user.email }}</td>
+                <td>{{user.id}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
                 <td>
-                    <ul>
                     {% for order in user.orders %}
-                        <p>{{ order.item_name }} ({{ order.total_price }})</p>
+                        {{order.item_name}}<br>
                     {% endfor %}
-                    </ul>
+                </td>
+                <td>
+                    {% for order in user.orders %}
+                        {{order.total_price}}<br>
+                    {% endfor %}
                 </td>
                 <td>
                     <ul>
                     {% for address in user.addresses %}
-                        <p>{{ address.address_line }}, {{ address.city }}, {{ address.country }}</p>
+                        <p>{{address.address_line}}, {{address.city}}, {{address.country}}</p>
                     {% endfor %}
                     </ul>
                 </td>
